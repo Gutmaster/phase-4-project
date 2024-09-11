@@ -5,27 +5,28 @@ from config import db
 
 
 # Models go here!
-class Species(db.Model, SerializerMixin):
+class Specie(db.Model, SerializerMixin):
     __tablename__ = 'species'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
+    
+    sightings = db.relationship('Sighting', back_populates='specie')
 
-    sightings = db.relationship('Sighting', back_populates='species')
-
-    serialize_rules = ('-sightings.species',)
+    serialize_rules = ('-sightings.specie',)
 
 
 class Sighting(db.Model, SerializerMixin):
     __tablename__ = 'sightings'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime)
+    datetime = db.Column(db.String)
+    image = db.Column(db.String)
 
-    species_id = db.Column(db.Integer, db.ForeignKey('species.id'), nullable=False)
-    species = db.relationship('Species', back_populates='sightings', cascade='delete')
+    species_id = db.Column(db.Integer, db.ForeignKey('species.id'))
+    specie = db.relationship('Specie', back_populates='sightings', cascade='delete')
 
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
     location = db.relationship('Location', back_populates='sightings', cascade='delete')
 
     serialize_rules = ('-species.sightings, -location.sightings')
