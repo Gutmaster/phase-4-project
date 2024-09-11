@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Specie, Sighting, Location
+from models import db, Animal, Photograph, Location
 
 if __name__ == '__main__':
     fake = Faker()
@@ -21,15 +21,15 @@ if __name__ == '__main__':
         # This will delete any existing rows
         # so you can run the seed file multiple times without having duplicate entries in your database
         print("Deleting data...")
-        Specie.query.delete()
-        Sighting.query.delete()
+        Animal.query.delete()
+        Photograph.query.delete()
         Location.query.delete()
 
         print("Creating Species...")
-        animal1 = Specie(name="Frog")
-        animal2 = Specie(name="Bear")
-        animal3 = Specie(name="Cat")
-        species = [animal1, animal2, animal3]
+        animal1 = Animal(name="Frog")
+        animal2 = Animal(name="Bear")
+        animal3 = Animal(name="Cat")
+        animals = [animal1, animal2, animal3]
 
         print("Creating Locations...")
         location1 = Location(name="Forest")
@@ -41,12 +41,12 @@ if __name__ == '__main__':
         dt_formatted = f"{dt.day}/{dt.month}/{dt.year} {dt.hour}:{dt.minute:02d}"
         
         print("Creating Sightings...")
-        sighting1 = Sighting(datetime = dt_formatted, specie = animal1, location = location1, image = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-JfVO_Hwqlb4%2FTlOjgETXGnI%2FAAAAAAAAAc4%2FKYiJ_rRA5vA%2Fs1600%2Ftree_frog_3.jpg&f=1&nofb=1&ipt=0c45bdee3a92168ace54b7573250e4d7321008620f864be8300bca996debcc6a&ipo=images')
-        sighting2 = Sighting(datetime = dt_formatted, specie = animal2, location = location2, image = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages6.alphacoders.com%2F529%2Fthumb-1920-529903.jpg&f=1&nofb=1&ipt=cae0c6abdc08cea8c14a123c2949b0c8069a392371af2f99371f2b04f1cbc1c5&ipo=images')
-        sighting3 = Sighting(datetime = dt_formatted, specie = animal3, location = location3, image = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.the-sun.com%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F10%2FKS-crunchy-cat-comp.jpg%3Fw%3D620&f=1&nofb=1&ipt=260c156d905b4d1a42dba3496bcc1c0a119e0fcb2c63a289040eafd20500ca4c&ipo=images')
+        sighting1 = Photograph(datetime = dt_formatted, animal = animal1, location = location1, image = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-JfVO_Hwqlb4%2FTlOjgETXGnI%2FAAAAAAAAAc4%2FKYiJ_rRA5vA%2Fs1600%2Ftree_frog_3.jpg&f=1&nofb=1&ipt=0c45bdee3a92168ace54b7573250e4d7321008620f864be8300bca996debcc6a&ipo=images')
+        sighting2 = Photograph(datetime = dt_formatted, animal = animal2, location = location2, image = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages6.alphacoders.com%2F529%2Fthumb-1920-529903.jpg&f=1&nofb=1&ipt=cae0c6abdc08cea8c14a123c2949b0c8069a392371af2f99371f2b04f1cbc1c5&ipo=images')
+        sighting3 = Photograph(datetime = dt_formatted, animal = animal3, location = location3, image = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.the-sun.com%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F10%2FKS-crunchy-cat-comp.jpg%3Fw%3D620&f=1&nofb=1&ipt=260c156d905b4d1a42dba3496bcc1c0a119e0fcb2c63a289040eafd20500ca4c&ipo=images')
         sightings = [sighting1, sighting2, sighting3]
 
-        db.session.add_all(species)
+        db.session.add_all(animals)
         db.session.add_all(locations)
         db.session.add_all(sightings)
         db.session.commit()

@@ -5,31 +5,31 @@ from config import db
 
 
 # Models go here!
-class Specie(db.Model, SerializerMixin):
-    __tablename__ = 'species'
+class Animal(db.Model, SerializerMixin):
+    __tablename__ = 'animals'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
     
-    sightings = db.relationship('Sighting', back_populates='specie')
+    photographs = db.relationship('Photograph', back_populates='animal')
 
-    serialize_rules = ('-sightings.specie',)
+    serialize_rules = ('-photographs.animal',)
 
 
-class Sighting(db.Model, SerializerMixin):
-    __tablename__ = 'sightings'
+class Photograph(db.Model, SerializerMixin):
+    __tablename__ = 'photographs'
 
     id = db.Column(db.Integer, primary_key=True)
     datetime = db.Column(db.String)
     image = db.Column(db.String)
 
-    species_id = db.Column(db.Integer, db.ForeignKey('species.id'))
-    specie = db.relationship('Specie', back_populates='sightings', cascade='delete')
+    animal_id = db.Column(db.Integer, db.ForeignKey('animals.id'))
+    animal = db.relationship('Animal', back_populates='photographs', cascade='delete')
 
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
-    location = db.relationship('Location', back_populates='sightings', cascade='delete')
+    location = db.relationship('Location', back_populates='photographs', cascade='delete')
 
-    serialize_rules = ('-species.sightings, -location.sightings')
+    serialize_rules = ('-animal.photographs, -location.photographs')
 
 
 class Location(db.Model, SerializerMixin):
@@ -38,6 +38,6 @@ class Location(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
 
-    sightings = db.relationship('Sighting', back_populates='location')
+    photographs = db.relationship('Photograph', back_populates='location')
 
-    serialize_rules = ('-sightings.location',)
+    serialize_rules = ('-photographs.location',)
