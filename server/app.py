@@ -43,10 +43,11 @@ class AnimalById(Resource):
 class Photographs(Resource):
     def get(self):
         photographs = Photograph.query.all()
-        return [{'Animal': photograph.animal.name,
-                 'Location': photograph.location.name,
-                 'DateTime': photograph.datetime,
-                 'Image': photograph.image} for photograph in photographs], 200
+        print(photographs)
+        return [{'animal': photograph.animal.name,
+                 'location': photograph.location.name,
+                 'datetime': photograph.datetime,
+                 'image': photograph.image} for photograph in photographs], 200
 
 api.add_resource(Animals, '/animals')
 api.add_resource(AnimalById, '/animals/<int:id>')
