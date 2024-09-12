@@ -19,16 +19,21 @@ def index():
 
 class Animals(Resource):
     def get(self):
+        # animals = Animal.query.all()
+        # return [{'id': animal.id,
+        #          'name': animal.name,
+        #          'photographs': animal.photographs} for animal in animals], 200
+
         animals = Animal.query.all()
-        return [{'ID': animal.id,
-                 'Name': animal.name} for animal in animals], 200
+        serialized_animals = [animal.to_dict() for animal in animals]
+        return serialized_animals, 200
 
 class AnimalById(Resource):
     def get(self, id):
         animal = Animal.query.filter_by(id=id).first()
         if animal:
-            return {'ID': animal.id,
-                    'Name': animal.name}, 200
+            return {'id': animal.id,
+                    'name': animal.name}, 200
         else:
             return {'Error': 'Animal not found'}, 404 
     def delete(self, id):
@@ -43,7 +48,6 @@ class AnimalById(Resource):
 class Photographs(Resource):
     def get(self):
         photographs = Photograph.query.all()
-        print(photographs)
         return [{'animal': photograph.animal.name,
                  'location': photograph.location.name,
                  'datetime': photograph.datetime,
