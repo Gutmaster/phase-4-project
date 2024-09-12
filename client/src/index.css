@@ -5,3 +5,24 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.scicard, .photoCard {
+  margin: 5px 0;
+  padding: 5px;
+  color: magenta;
+  border: 1px solid grey;
+  border-radius: 12px;
+  background-color: turquoise;
+}
+.scicard img, .photoCard img {
+  width: 100px;
+}
+.scicard button, .photoCard button {
+  background-color: rgb(255, 0, 106);
+  color: white;
+  border-radius: 20px;
+}
