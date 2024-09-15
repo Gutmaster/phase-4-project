@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Animal({name, photographs}) {
-console.log(photographs)
+function Animal({animal}) {
   return (
     <div className="photoCard">
-      <h4>Name: {name}</h4>
-      <img src={photographs[0].image}/>
+      <h4>
+        <Link to={`/animals/${animal.id}`}> Name: {animal.name}</Link>
+      </h4>
+      <img src={animal.photographs[0].image}/>
     </div>
   );
 }

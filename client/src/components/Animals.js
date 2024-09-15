@@ -26,7 +26,7 @@ function Animals() {
     <section className="container">
       {animals.map((animal) => (
         <div key = {animal.id}>
-            <Animal name = {animal.name} photographs = {animal.photographs}/>
+            <Animal animal = {animal}/>
             <button onClick={() => handleDelete(animal.id)}>Delete</button>
         </div>
       ))}

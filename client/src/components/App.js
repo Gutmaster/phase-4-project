@@ -3,6 +3,7 @@ import Home from "./Home.js"
 import Navbar from "./NavBar.js";
 import Photographs from "./Photographs.js"
 import Animals from "./Animals.js"
+import Locations from "./Locations.js"
 import { Switch, Route } from "react-router-dom";
 
 function App() {
@@ -10,17 +11,17 @@ function App() {
     <>
       <Navbar />
       <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Route exact path="/photographs">
           <Photographs />
         </Route>
         <Route exact path="/animals">
           <Animals />
         </Route>
-        <Route exact path="/animals/:id">
-          {/* <Species /> */}
-        </Route>
-        <Route exact path="/">
-          <Home />
+        <Route exact path="/locations">
+          <Locations />
         </Route>
       </Switch>
     </>
