@@ -3,6 +3,7 @@ import Photograph from "./Photograph.js"
 
 function Photographs() {
   const [photos, setPhotos] = useState([]);
+  const [filterMode, setFilterMode] = useState('nofilter');
 
   useEffect(() => {
     fetch("/photographs")
@@ -21,11 +22,22 @@ function Photographs() {
       }
     });
   }
+  
+  const handleFilterTypeChange = (event) => {
+    setFilterMode(event.target.value);
+  };
 
   return (
     <section className="container">
+      <select value={filterMode} onChange={handleFilterTypeChange}>
+        <option value="nofilter">None</option>
+        <option value="animal">Animal</option>
+        <option value="location">Location</option>
+      </select>
+      <p>Selected: {filterMode}</p>
+
       {photos.map((photo) => (
-        <Photograph animal = {photo.animal} image = {photo.image} location = {photo.location} datetime = {photo.datetime}/>
+        <Photograph key = {photo.id} animal = {photo.animal} image = {photo.image} location = {photo.location} datetime = {photo.datetime}/>
       ))}
     </section>
   );
