@@ -10,24 +10,11 @@ function Animals() {
       .then(json => setAnimals(json));
   }, []);
 
-  function handleDelete(id) {
-    fetch(`/animals/${id}`, {
-      method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        setAnimals((animals) =>
-          animals.filter((animal) => animal.id !== id)
-        );
-      }
-    });
-  }
-
   return (
     <section className="container">
       {animals.map((animal) => (
         <div key = {animal.id}>
             <Animal animal = {animal}/>
-            <button onClick={() => handleDelete(animal.id)}>Delete</button>
         </div>
       ))}
     </section>

@@ -11,7 +11,7 @@ class Animal(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
 
-    photographs = db.relationship('Photograph', back_populates='animal', cascade='delete')
+    photographs = db.relationship('Photograph', back_populates='animal')
 
     serialize_rules = ('-photographs.animal',)
 
@@ -24,10 +24,10 @@ class Photograph(db.Model, SerializerMixin):
     image = db.Column(db.String)
 
     animal_id = db.Column(db.Integer, db.ForeignKey('animals.id'))
-    animal = db.relationship('Animal', back_populates='photographs', cascade='delete')
+    animal = db.relationship('Animal', back_populates='photographs')
 
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
-    location = db.relationship('Location', back_populates='photographs', cascade='delete')
+    location = db.relationship('Location', back_populates='photographs')
 
     serialize_rules = ('-animal.photographs', '-location.photographs')
 
@@ -38,6 +38,6 @@ class Location(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
 
-    photographs = db.relationship('Photograph', back_populates='location', cascade='delete')
+    photographs = db.relationship('Photograph', back_populates='location')
 
     serialize_rules = ('-photographs.location',)

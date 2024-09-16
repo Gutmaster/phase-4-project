@@ -48,10 +48,21 @@ class Photographs(Resource):
         photographs = Photograph.query.all()
         return [photograph.to_dict() for photograph in photographs], 200
 
+class PhotographById(Resource):
+    def delete(self, id):
+        photograph = Photograph.query.filter_by(id=id).first()
+        if photograph:
+            db.session.delete(photograph)
+            db.session.commit()
+            return {'Message': 'Photograph deleted'}, 200
+        else:
+            return {'Error': 'Photograph not found'}, 404
+
 api.add_resource(Animals, '/animals')
 api.add_resource(AnimalById, '/animals/<int:id>')
 api.add_resource(Locations, '/locations')
 api.add_resource(Photographs, '/photographs')
+api.add_resource(PhotographById, '/photographs/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -19,7 +19,7 @@ function Photographs() {
      .then((r) => r.json())
      .then(json => setLocations(json));
   }, []);
-  
+
   useEffect(() => {
     fetch("/photographs")
       .then((r) => r.json())
@@ -38,7 +38,10 @@ function Photographs() {
     });
   }
   
-  const handleFilterTypeChange = (event) => setFilterMode(event.target.value)
+  const handleFilterTypeChange = (event) => {
+    setFilterMode(event.target.value)
+    setFilter('nofilter')
+  }
   const handleFilterChange = (event) => setFilter(event.target.value)
 
   const filteredPhotos = photos.filter((photo) => 
@@ -48,29 +51,32 @@ function Photographs() {
   )
 
   return (
-    <section className="container">
-      <select value={filterMode} onChange={handleFilterTypeChange}>
-        <option value="nofilter">None</option>
-        <option value="animal">Animal</option>
-        <option value="location">Location</option>
-      </select>
-
-      {filterMode === 'nofilter' ? (<></>) : (
-        <div>
-          <select value={filter} onChange={handleFilterChange}>
-            <option value="nofilter">None</option>
-            {filterMode === 'animal' ? animals.map(animal => (
-              <option key={animal.id} value={animal.name}>{animal.name}</option>
-            )) : locations.map((location) => (
-              <option key={location.id} value={location.name}>{location.name}</option>))}
-          </select>
-        </div>
-      )}
-      
-      {filteredPhotos.map((photo) => (
-        <Photograph key = {photo.id} animal = {photo.animal} image = {photo.image} location = {photo.location} datetime = {photo.datetime}/>
-      ))}
-    </section>
+    <div>
+      <div className="filter">
+        <select value={filterMode} onChange={handleFilterTypeChange}>
+          <option value="nofilter">None</option>
+          <option value="animal">Animal</option>
+          <option value="location">Location</option>
+        </select>
+        {filterMode === 'nofilter' ? (<></>) : (
+          <div>
+            <select value={filter} onChange={handleFilterChange}>
+              <option value="nofilter">None</option>
+              {filterMode === 'animal' ? animals.map(animal => (
+                <option key={animal.id} value={animal.name}>{animal.name}</option>
+              )) : locations.map((location) => (
+                <option key={location.id} value={location.name}>{location.name}</option>))}
+            </select>
+          </div>
+        )}
+      </div>
+    
+      <section className="container">
+        {filteredPhotos.map((photo) => (
+          <Photograph key = {photo.id} id = {photo.id} animal = {photo.animal} image = {photo.image} handleDelete = {handleDelete} location = {photo.location} datetime = {photo.datetime}/>
+        ))}
+      </section>
+    </div>
   );
 }
 
