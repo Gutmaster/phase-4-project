@@ -26,9 +26,9 @@ if __name__ == '__main__':
         Location.query.delete()
 
         print("Creating Species...")
-        frog = Animal(name="Frog")
-        bear = Animal(name="Bear")
-        cat = Animal(name="Cat")
+        frog = Animal(name="Frog", description=fake.paragraph())
+        bear = Animal(name="Bear", description=fake.paragraph())
+        cat = Animal(name="Cat", description=fake.paragraph())
         animals = [frog, bear, cat]
 
         print("Creating Locations...")

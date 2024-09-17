@@ -10,6 +10,7 @@ class Animal(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
+    description = db.Column(db.String)
 
     photographs = db.relationship('Photograph', back_populates='animal')
 
@@ -37,6 +38,7 @@ class Location(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
+    description = db.Column(db.String)
 
     photographs = db.relationship('Photograph', back_populates='location')
 
