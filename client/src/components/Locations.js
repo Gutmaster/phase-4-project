@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import Location from "./Location.js"
 
-function Locations() {
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    fetch("/locations")
-      .then((r) => r.json())
-      .then(json => setLocations(json));
-  }, []);
-
+function Locations({locations}) {
   return (
     <section className="container">
       {locations.map((location) => (

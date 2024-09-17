@@ -7,6 +7,40 @@ import Locations from "./Locations.js"
 import { Switch, Route } from "react-router-dom";
 
 function App() {
+  const [animals, setAnimals] = useState([])
+  const [locations, setLocations] = useState([])
+  const [photos, setPhotos] = useState([])
+
+  useEffect(() => {
+    fetch("/animals")
+      .then((r) => r.json())
+      .then(json => setAnimals(json));
+  }, []);
+
+  useEffect(() => {
+    fetch("/locations")
+     .then((r) => r.json())
+     .then(json => setLocations(json));
+  }, []);
+
+  useEffect(() => {
+    fetch("/photographs")
+      .then((r) => r.json())
+      .then(setPhotos);
+  }, []);
+
+  function handleDeletePhoto(id) {
+    fetch(`/photographs/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setPhotos((photos) =>
+          photos.filter((photo) => photo.id !== id)
+        );
+      }
+    });
+  }
+
   return (
     <>
       <Navbar />
@@ -15,13 +49,13 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/photographs">
-          <Photographs />
+          <Photographs photos={photos} animals={animals} locations={locations} handleDelete={handleDeletePhoto}/>
         </Route>
         <Route exact path="/animals">
-          <Animals />
+          <Animals animals={animals}/>
         </Route>
         <Route exact path="/locations">
-          <Locations />
+          <Locations locations={locations}/>
         </Route>
       </Switch>
     </>

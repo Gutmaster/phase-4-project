@@ -1,42 +1,9 @@
 import { useEffect, useState } from "react";
 import Photograph from "./Photograph.js"
 
-function Photographs() {
-  const [photos, setPhotos] = useState([])
+function Photographs({photos, animals, locations, handleDelete}) {
   const [filterMode, setFilterMode] = useState('nofilter')
   const [filter, setFilter] = useState('nofilter')
-  const [animals, setAnimals] = useState([]);
-  const [locations, setLocations] = useState([])
-
-  useEffect(() => {
-    fetch("/animals")
-      .then((r) => r.json())
-      .then(json => setAnimals(json));
-  }, []);
-
-  useEffect(() => {
-    fetch("/locations")
-     .then((r) => r.json())
-     .then(json => setLocations(json));
-  }, []);
-
-  useEffect(() => {
-    fetch("/photographs")
-      .then((r) => r.json())
-      .then(setPhotos);
-  }, []);
-
-  function handleDelete(id) {
-    fetch(`/photographs/${id}`, {
-      method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        setPhotos((photos) =>
-          photos.filter((photo) => photo.id !== id)
-        );
-      }
-    });
-  }
   
   const handleFilterTypeChange = (event) => {
     setFilterMode(event.target.value)
