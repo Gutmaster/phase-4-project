@@ -32,9 +32,9 @@ if __name__ == '__main__':
         animals = [frog, bear, cat]
 
         print("Creating Locations...")
-        location1 = Location(name="Forest")
-        location2 = Location(name="Crag")
-        location3 = Location(name="Mountain")
+        location1 = Location(name="Forest", description=fake.paragraph())
+        location2 = Location(name="Crag", description=fake.paragraph())
+        location3 = Location(name="Mountain", description=fake.paragraph())
         locations = [location1, location2, location3]
 
         dt = datetime.now()

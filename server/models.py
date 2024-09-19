@@ -14,6 +14,9 @@ class Animal(db.Model, SerializerMixin):
 
     photographs = db.relationship('Photograph', back_populates='animal')
 
+    # Adding association proxy to access locations directly from animals
+    locations = association_proxy('photographs', 'location')
+
     serialize_rules = ('-photographs.animal',)
 
 
@@ -42,4 +45,7 @@ class Location(db.Model, SerializerMixin):
 
     photographs = db.relationship('Photograph', back_populates='location')
 
+    # Adding association proxy to access animals directly from locations
+    animals = association_proxy('photographs', 'animal')
+    
     serialize_rules = ('-photographs.location',)

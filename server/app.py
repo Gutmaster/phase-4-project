@@ -13,13 +13,6 @@ from config import app, db, api
 # Add your model imports
 from models import Animal, Photograph, Location
 
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='../client/build',
-    template_folder='../client/build'
-)
-
 
 # Views go here!
 @app.errorhandler(404)
