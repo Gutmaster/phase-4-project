@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Animal from "./Animal.js"
 
 function Animals({animals}) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Photograph from "./Photograph.js"
 
 function Photographs({photos, animals, locations, handleDelete}) {

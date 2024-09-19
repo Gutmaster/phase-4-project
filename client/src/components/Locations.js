@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Location from "./Location.js"
 
 function Locations({locations}) {
