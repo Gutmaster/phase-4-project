@@ -21,7 +21,7 @@ function Location({location}) {
             </h4>
             <span>
                 <button onClick={handleArrowLeft}>&lt;</button>
-                {location.photographs.length ? <img src={location.photographs[photoIndex].image}/> : <img src={noImage}/>}
+                {location.photographs.length ? <img src={location.photographs[photoIndex].image} alt={location.name}/> : <img src={noImage} alt='no_photo'/>}
                 <button onClick={handleArrowRight}>&gt;</button>
             </span>
         </div>

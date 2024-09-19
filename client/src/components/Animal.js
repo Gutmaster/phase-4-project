@@ -21,7 +21,7 @@ function Animal({animal}) {
       </h4>
       <span>
         <button onClick={handleArrowLeft}>&lt;</button>
-        {animal.photographs.length ? <img src={animal.photographs[photoIndex].image}/> : <img src={noImage}/>}
+        {animal.photographs.length ? <img src={animal.photographs[photoIndex].image} alt={animal.name}/> : <img src={noImage} alt='no_photo'/>}
         <button onClick={handleArrowRight}>&gt;</button>
       </span>
       <p>{animal.description}</p>
