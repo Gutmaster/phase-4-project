@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 # Standard library imports
+from dotenv import load_dotenv
+load_dotenv()
 
 # Remote library imports
-from flask import request
+from flask import Flask, render_template, request
 from flask_restful import Resource
 
 # Local imports
@@ -11,7 +13,18 @@ from config import app, db, api
 # Add your model imports
 from models import Animal, Photograph, Location
 
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
+)
+
+
 # Views go here!
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
 
 @app.route('/')
 def index():
