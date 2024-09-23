@@ -24,6 +24,7 @@ function Location({location}) {
                 {location.photographs.length ? <img src={location.photographs[photoIndex].image} alt={location.name}/> : <img src={noImage} alt='no_photo'/>}
                 <button onClick={handleArrowRight}>&gt;</button>
             </span>
+            <p>{location.description}</p>
         </div>
     );
 }
