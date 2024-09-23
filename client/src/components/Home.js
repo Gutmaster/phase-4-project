@@ -10,6 +10,8 @@ function Home() {
         <p>
           <Link to="/photographs">View our photographs</Link> or
           <Link to="/animals"> explore our animals</Link>.
+          <Link to="/locations">Check out our locations</Link> as well.
+          Don't forget to <Link to="/newphoto">add a new photo</Link> if you'd like!
         </p>
       </div>
     );

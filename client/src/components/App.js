@@ -4,6 +4,7 @@ import Navbar from "./NavBar.js";
 import Photographs from "./Photographs.js"
 import Animals from "./Animals.js"
 import Locations from "./Locations.js"
+import NewPhoto from "./NewPhoto.js"
 import { Switch, Route } from "react-router-dom";
 
 function App() {
@@ -48,14 +49,17 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/photographs">
-          <Photographs photos={photos} animals={animals} locations={locations} handleDelete={handleDeletePhoto}/>
-        </Route>
         <Route exact path="/animals">
           <Animals animals={animals}/>
         </Route>
         <Route exact path="/locations">
           <Locations locations={locations}/>
+        </Route>
+        <Route exact path="/photographs">
+          <Photographs photos={photos} animals={animals} locations={locations} handleDelete={handleDeletePhoto}/>
+        </Route>
+        <Route exact path="/newphoto">
+          <NewPhoto animals={animals} locations={locations}/>
         </Route>
       </Switch>
     </>

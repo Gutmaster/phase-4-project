@@ -28,7 +28,7 @@ header nav a {
   align-items: center;
 }
 
-.scicard, .photoCard {
+.photoCard {
   margin: 5px 0;
   padding: 5px;
   max-width: 550px;
@@ -39,7 +39,7 @@ header nav a {
   background-color: rgb(22, 153, 44);
 }
 
-.scicard img, .photoCard img {
+.photoCard img {
   display: inline-flex;
   margin-left: auto;
   margin-right: auto;
@@ -48,12 +48,11 @@ header nav a {
   vertical-align: middle;
 }
 
-.scicard button, .photoCard button {
+.photoCard button {
   display:inline-flex;
   background-color: rgb(255, 0, 106);
   color: white;
   border-radius: 20px;
-
 }
 
 .filter{
@@ -68,4 +67,28 @@ header nav a {
   width:75px;
   max-width:100px;
   border: 20px solid blueviolet;
+}
+
+.newPhotoForm{
+  margin-left:30%;
+  width: 700px;
+  border: 5px solid royalblue;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  text-align: top;
+}
+
+button {
+  margin-left:45%;
+}
+
+textarea {
+  vertical-align: top;
 }

@@ -9,6 +9,7 @@ function Navbar() {
         <Link to="/animals">Animals </Link>
         <Link to="/locations">Locations </Link>
         <Link to="/photographs">Photographs </Link>
+        <Link to="/newphoto">Add New Photo </Link>
       </nav>
     </header>
   );
