@@ -5,6 +5,20 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+header {
+  padding: 8px;
+  background-color: rgb(150, 76, 34);
+  text-align: center;
+}
+
+header nav {
+  padding: 8px;
+}
+
+header nav a {
+  font-size: 1.5rem;
+}
+
 .container {
   margin: 0 auto;
   display: flex;
@@ -24,6 +38,7 @@
   border-radius: 12px;
   background-color: rgb(22, 153, 44);
 }
+
 .scicard img, .photoCard img {
   display: inline-flex;
   margin-left: auto;
@@ -32,6 +47,7 @@
   height: 370px;
   vertical-align: middle;
 }
+
 .scicard button, .photoCard button {
   display:inline-flex;
   background-color: rgb(255, 0, 106);
@@ -41,9 +57,15 @@
 }
 
 .filter{
-  margin: 0;
+  /* margin: 0;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  margin-left:45%;
+  align-self:center;
+  align-content: center;
+  align-items: center;
+  width:75px;
+  max-width:100px;
   border: 20px solid blueviolet;
 }
