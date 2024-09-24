@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # Standard library imports
+from datetime import datetime
 from dotenv import load_dotenv
-load_dotenv()
 
 # Remote library imports
 from flask import Flask, render_template, request
@@ -13,6 +13,7 @@ from config import app, db, api
 # Add your model imports
 from models import Animal, Photograph, Location
 
+load_dotenv()
 
 # Views go here!
 @app.errorhandler(404)
@@ -53,6 +54,27 @@ class Photographs(Resource):
     def get(self):
         photographs = Photograph.query.all()
         return [photograph.to_dict() for photograph in photographs], 200
+    
+    def post(self):
+        print("POSTING!!!")
+        data = request.json
+        print("POSTING...")
+        dt = datetime.now()
+        dt_formatted = f"{dt.day}/{dt.month}/{dt.year} {dt.hour}:{dt.minute:02d}"
+        print(data)
+        print(data.get('animal_id'))
+        animal = Animal.query.filter_by(id=data.get('animal_id')).first()
+        if animal:
+            location = Location.query.filter_by(id=data.get('location_id')).first()
+            if location:
+                photograph = Photograph(datetime = dt_formatted, animal = animal, location = location, image = data.get('image'))
+                db.session.add(photograph)
+                db.session.commit()
+                return photograph.to_dict(), 201
+            else:
+                return {'Error': 'Location not found'}, 404
+        else:
+            return {'Error': 'Animal not found'}, 404
 
 class PhotographById(Resource):
     def delete(self, id):

@@ -21,9 +21,10 @@ if __name__ == '__main__':
         # This will delete any existing rows
         # so you can run the seed file multiple times without having duplicate entries in your database
         print("Deleting data...")
-        Animal.query.delete()
         Photograph.query.delete()
+        Animal.query.delete()
         Location.query.delete()
+       
 
         print("Creating Species...")
         frog = Animal(name="Frog", description=fake.paragraph())
