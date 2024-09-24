@@ -5,8 +5,8 @@ function Photographs({photos, animals, locations, handleDelete}) {
   const [filterMode, setFilterMode] = useState('nofilter')
   const [filter, setFilter] = useState('nofilter')
   
-  const handleFilterTypeChange = (event) => {
-    setFilterMode(event.target.value)
+  const handleFilterTypeChange = (e) => {
+    setFilterMode(e.target.value)
     setFilter('nofilter')
   }
   const handleFilterChange = (event) => setFilter(event.target.value)
@@ -20,14 +20,14 @@ function Photographs({photos, animals, locations, handleDelete}) {
   return (
     <div>
       <div className="filter">
-        <select value={filterMode} onChange={handleFilterTypeChange}>
+        <select id = "filterMode" value={filterMode} onChange={(e) => handleFilterTypeChange(e)}>
           <option value="nofilter">None</option>
           <option value="animal">Animal</option>
           <option value="location">Location</option>
         </select>
         {filterMode === 'nofilter' ? (<></>) : (
           <div>
-            <select value={filter} onChange={handleFilterChange}>
+            <select id = "filter" value={filter} onChange={(e) => handleFilterChange(e)}>
               <option value="nofilter">None</option>
               {filterMode === 'animal' ? animals.map(animal => (
                 <option key={animal.id} value={animal.name}>{animal.name}</option>

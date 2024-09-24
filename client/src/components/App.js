@@ -16,13 +16,13 @@ function App() {
     fetch("/animals")
       .then((r) => r.json())
       .then(json => setAnimals(json));
-  }, []);
+  }, [photos]);
 
   useEffect(() => {
     fetch("/locations")
      .then((r) => r.json())
      .then(json => setLocations(json));
-  }, []);
+  }, [photos]);
 
   useEffect(() => {
     fetch("/photographs")
@@ -59,7 +59,7 @@ function App() {
           <Photographs photos={photos} animals={animals} locations={locations} handleDelete={handleDeletePhoto}/>
         </Route>
         <Route exact path="/newphoto">
-          <NewPhoto animals={animals} locations={locations}/>
+          <NewPhoto animals={animals} locations={locations} photos={photos} setPhotos={setPhotos}/>
         </Route>
       </Switch>
     </>
