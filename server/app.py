@@ -62,19 +62,28 @@ class Photographs(Resource):
         dt = datetime.now()
         dt_formatted = f"{dt.day}/{dt.month}/{dt.year} {dt.hour}:{dt.minute:02d}"
         print(data)
-        print(data.get('animal_id'))
-        animal = Animal.query.filter_by(id=data.get('animal_id')).first()
-        if animal:
-            location = Location.query.filter_by(id=data.get('location_id')).first()
-            if location:
-                photograph = Photograph(datetime = dt_formatted, animal = animal, location = location, image = data.get('image'))
-                db.session.add(photograph)
-                db.session.commit()
-                return photograph.to_dict(), 201
-            else:
-                return {'Error': 'Location not found'}, 404
-        else:
-            return {'Error': 'Animal not found'}, 404
+        print(data.get('animal_name'))
+
+        animal = Animal.query.filter_by(name=data.get('animal_name')).first()
+        if not animal:
+            try:
+                animal = Animal(name = data.get('animal_name'))
+            except ValueError:
+                return {'error creating new animal': ['validation errors']}, 400
+            db.session.add(animal)
+        
+        location = Location.query.filter_by(name=data.get('location_name')).first()
+        if not location:
+            try:
+                location = Location(name = data.get('location_name'))
+            except ValueError:
+                return {'error creating new location': ['validation errors']}, 400
+            db.session.add(location)
+
+        photograph = Photograph(datetime = dt_formatted, animal = animal, location = location, image = data.get('image'))
+        db.session.add(photograph)
+        db.session.commit()
+        return photograph.to_dict(), 201
 
 class PhotographById(Resource):
     def delete(self, id):
