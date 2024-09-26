@@ -36,6 +36,17 @@ class AnimalById(Resource):
             return animal.to_dict(), 200
         else:
             return {'Error': 'Animal not found'}, 404 
+    
+    def patch(self, id):
+        animal = Animal.query.filter_by(id=id).first()
+        if animal:
+            animal.name = request.json.get('name')
+            animal.description = request.json.get('description')
+            db.session.commit()
+            return animal.to_dict(), 200
+        else:
+            return {'Error': 'Animal not found'}, 404
+        
     def delete(self, id):
         animal = Animal.query.filter_by(id=id).first()
         if animal:

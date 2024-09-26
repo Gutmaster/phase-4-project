@@ -4,6 +4,9 @@ const noImage = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww
 
 function Animal({animal}) {
   const [photoIndex, setPhotoIndex] = useState(0)
+  const [edit, setEdit] = useState(false)
+  let prevEdit = edit
+  const [description, setDescription] = useState(animal.description)
 
   function handleArrowRight(e) {
     e.preventDefault()
@@ -13,6 +16,25 @@ function Animal({animal}) {
     e.preventDefault()
     setPhotoIndex((photoIndex - 1 + animal.photographs.length) % animal.photographs.length)
   }
+
+  function handleEdit() {
+    prevEdit = edit
+    if (prevEdit)
+    {
+        animal.description = description
+        fetch(`/animals/${animal.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: animal.name, description: description})
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error))
+    }
+    setEdit(!prevEdit)
+}
 
   return (
     <div className="photoCard">
@@ -24,7 +46,8 @@ function Animal({animal}) {
         {animal.photographs.length ? <img src={animal.photographs[photoIndex].image} alt={animal.name}/> : <img src={noImage} alt='no_photo'/>}
         <button onClick={handleArrowRight}>&gt;</button>
       </span>
-      <p>{animal.description}</p>
+      {edit ? <textarea className='edit' rows="5" cols="69" value={description} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
+      <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
     </div>
   );
 }
