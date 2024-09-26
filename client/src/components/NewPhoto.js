@@ -32,29 +32,32 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
 
     return (
         <form className='newPhotoForm' onSubmit={onSubmit}>
-            <label htmlFor='animal'>Animal: </label>
-                <select id="animal" name="animal" value={animal} onChange={(e) => setAnimal(e.target.value)}>
-                    <option value={'select'}>Select Animal</option>
-                    {animals.map((animal) => (
-                        <option key={animal.id} value={animal.name}>{animal.name}</option>
-                    ))}
-                    <option value={'newAnimal'}>New Animal</option>
-                </select>
-                {animal === 'newAnimal' ? <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)}/> : <></>}
-                <br />
-            <label htmlFor='location'>Location: </label>
-                <select id="location" name="location" value={location} onChange={(e) => setLocation(e.target.value)}>
-                    <option value={'select'}>Select Location</option>
-                    {locations.map((location) => (
-                        <option key={location.id} value={location.name}>{location.name}</option>
-                    ))}
-                    <option value={'newLocation'}>New Location</option>
-                </select>
+            <div className='left'>
+                <label htmlFor='animal'>Animal: </label>
+                    <select id="animal" name="animal" value={animal} onChange={(e) => setAnimal(e.target.value)}>
+                        <option value={'select'}>Select Animal</option>
+                        {animals.map((animal) => (
+                            <option key={animal.id} value={animal.name}>{animal.name}</option>
+                        ))}
+                        <option value={'newAnimal'}>New Animal</option>
+                    </select>
+
+                <label htmlFor='location'>Location: </label>
+                    <select id="location" name="location" value={location} onChange={(e) => setLocation(e.target.value)}>
+                        <option value={'select'}>Select Location</option>
+                        {locations.map((location) => (
+                            <option key={location.id} value={location.name}>{location.name}</option>
+                        ))}
+                        <option value={'newLocation'}>New Location</option>
+                    </select>
+
+                <label htmlFor='image'>Image URL: </label>
+                    <input type="text" id = "image" name="image" value={image} onChange={(e) => setImage(e.target.value)}/>
+            </div>
+            <div className='right'>
+                {animal === 'newAnimal' ? <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)}/> : <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)} style = {{visibility: 'hidden'}}/>}
                 {location === 'newLocation' ? <input type="text" id = "newLocation" name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)}/> : <></>}
-                <br />
-            <label htmlFor='image'>Image URL: </label>
-                <input type="text" id = "image" name="image" value={image} onChange={(e) => setImage(e.target.value)}/>
-                <br />
+            </div>  
             <button type="submit" className='submitButton'>Submit</button>
         </form>
     );
