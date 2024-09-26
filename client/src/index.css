@@ -93,6 +93,13 @@ textarea {
   vertical-align: top;
 }
 
+.edit {
+  margin-left:10px;
+  margin-right:10px;
+  margin-top: 10px;
+  text-align: top;
+  vertical-align: top;
+}
 
 body { background: #222; color: white; }
 

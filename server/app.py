@@ -50,19 +50,27 @@ class Locations(Resource):
         locations = Location.query.all()
         return [location.to_dict() for location in locations], 200
 
+class LocationById(Resource):
+    def patch(self, id):
+        location = Location.query.filter_by(id=id).first()
+        if location:
+            location.name = request.json.get('name')
+            location.description = request.json.get('description')
+            db.session.commit()
+            return location.to_dict(), 200
+        else:
+            return {'Error': 'Location not found'}, 404
+
 class Photographs(Resource):
     def get(self):
         photographs = Photograph.query.all()
         return [photograph.to_dict() for photograph in photographs], 200
     
     def post(self):
-        print("POSTING!!!")
         data = request.json
-        print("POSTING...")
+
         dt = datetime.now()
         dt_formatted = f"{dt.day}/{dt.month}/{dt.year} {dt.hour}:{dt.minute:02d}"
-        print(data)
-        print(data.get('animal_name'))
 
         animal = Animal.query.filter_by(name=data.get('animal_name')).first()
         if not animal:
@@ -98,6 +106,7 @@ class PhotographById(Resource):
 api.add_resource(Animals, '/animals')
 api.add_resource(AnimalById, '/animals/<int:id>')
 api.add_resource(Locations, '/locations')
+api.add_resource(LocationById, '/locations/<int:id>')
 api.add_resource(Photographs, '/photographs')
 api.add_resource(PhotographById, '/photographs/<int:id>')
 
