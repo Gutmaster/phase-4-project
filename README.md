@@ -20,7 +20,11 @@ the program. It can be run by entering `python server/seed.py` from the project 
 This file contains imports and configuration for the app and database.
 
 ### app.py
-This file serves to and accepts data from the client application.
+This file contains the following routes that serve to and accepts data from the client application.
+
+#### /animals
+Handles get requests and returns a list of all animals from the database.
+
 
 ### models.py
 This file contains the definitions for all models used in the animal_photo database.
