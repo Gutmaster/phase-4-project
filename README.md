@@ -1,3 +1,35 @@
+# Phase 4 Full Stack Web Application Project
+## Animal Papparazi
+
+## Introduction
+This web application lets users upload and view photos of animals, categorized by species and location.
+The user can also add and edit descriptions of any animals or locations to better inform future users.
+
+
+# File Descriptions
+## Client Side
+
+
+## Server Side
+
+### seed.py
+This file resets and seeds the animal_photo database with initial values for
+the program. It can be run by entering `python server/seed.py` from the project directory.
+
+### config.py
+This file contains imports and configuration for the app and database.
+
+### app.py
+This file serves to and accepts data from the client application.
+
+### models.py
+This file contains the definitions for all models used in the animal_photo database.
+
+
+
+
+
+
 # Phase 4 Full-Stack Application Project Template
 
 ## Learning Goals
