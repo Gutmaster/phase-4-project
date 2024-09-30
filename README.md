@@ -11,23 +11,53 @@ The user can also add and edit descriptions of any animals or locations to bette
 
 
 ## Server Side
-
 ### seed.py
 This file resets and seeds the animal_photo database with initial values for
 the program. It can be run by entering `python server/seed.py` from the project directory.
 
+
 ### config.py
 This file contains imports and configuration for the app and database.
 
+
 ### app.py
-This file contains the following routes that serve to and accepts data from the client application.
+This file contains the following routes that serve to and accepts data from the client application. 
+It is written to Flask RESTful standards and contains the following classes and methods.
 
-#### /animals
-Handles get requests and returns a list of all animals from the database.
+#### Class Animals
+##### get
+Handles get requests to /animals and returns a list of all animals from the database.
 
+#### Class AnimalsById
+##### patch
+Handles patch requests to /animals/{id} and pulls the animal from the database matching the given ID and patches it's
+name and description with the name and description from the request body. Returns the patched animal if successful.
+
+#### Class Locations
+##### get
+Handles get requests to /locations and returns a list of all locations from the database.
+
+#### Class LocationById
+##### patch
+Handles patch requests to /locations/{id} and pulls the location from the database matching the given ID and patches it's
+name and description with the name and description from the request body. Returns the patched location if successful.
+
+#### Class Photographs
+##### get
+Handles get requests to /photographs and returns a list of all photographs from the database.
+
+#### post
+Handles post requests to /photographs and attempts to create a new photograph from information in the request body.
+It will create a new animal and/or location if those requested are not yet in the database. On success, updates the
+database and returns the new photograph.
 
 ### models.py
 This file contains the definitions for all models used in the animal_photo database.
+
+#### Class PhotographsById
+##### delete
+Handles delete requests to /photographs/{id}, finds the photograph associated with the given id and deletes it from the database.
+Returns nothing if successful.
 
 
 
