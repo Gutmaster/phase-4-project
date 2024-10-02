@@ -8,6 +8,61 @@ The user can also add and edit descriptions of any animals or locations to bette
 
 # File Descriptions
 ## Client Side
+### index.css 
+Contains HTML styles for the front-end application.
+
+### index.js
+Creates root and renders App.
+
+### /Components
+The following files are react components.
+### App.js
+#### App
+Pulls animals, locations, and photographs from the database and makes stateful arrays out of them.
+Returns JSX describing route mapping and passes relevant information to rendered components.
+Contains the following helper function:
+- handleDeletePhoto: takes an id, and deletes the associated object from the photograph database, updates photos in state 
+
+### Home.js
+#### Home
+Returns JSX for a splash page with a quick description of the site and links to it's pages.
+
+### NavBar.js
+#### Navbar
+Returns JSX for a navbar with links to all pages on site.
+
+### Animal.js
+#### Animal
+Returns a JSX representation of an Animal object. Contains the following helper functions:
+- handleArrowRight: raises photo index and changes displayed picture for animal
+- handleArrowLeft: lowers photo index and changes displayed picture for animal
+- handleEdit: edits animal description from content received from client then pushes changes to database
+
+### Animals.js
+#### Animals
+Returns a list of all Animal objects in JSX.
+
+### Location.js
+#### Location
+Returns a JSX representation of a Location object. Contains the following helper functions:
+- handleArrowRight: raises photo index and changes displayed picture for location
+- handleArrowLeft: lowers photo index and changes displayed picture for location
+- handleEdit: edits location description from content received from client then pushes changes to database
+
+### Locations.js
+#### Locations
+Returns a list of all Location objects in JSX.
+
+### Photograph.js
+#### Photograph
+Returns a JSX representation of a Photograph object.
+
+### Photographs.js
+#### Photographs
+Returns a filter and filtered list of photographs from the database. Contains the following helper functions:
+- handleFilterTypeChange: handles changing the state of the type of filter applied
+- handleFilterChange: handles changing the state of the filter
+
 
 
 ## Server Side
@@ -51,15 +106,14 @@ Handles post requests to /photographs and attempts to create a new photograph fr
 It will create a new animal and/or location if those requested are not yet in the database. On success, updates the
 database and returns the new photograph.
 
-### models.py
-This file contains the definitions for all models used in the animal_photo database.
-
 #### Class PhotographsById
 ##### delete
 Handles delete requests to /photographs/{id}, finds the photograph associated with the given id and deletes it from the database.
 Returns nothing if successful.
 
 
+### models.py
+This file contains the definitions for all models used in the animal_photo database.
 
 
 
