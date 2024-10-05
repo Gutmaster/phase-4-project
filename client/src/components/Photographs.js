@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Photograph from "./Photograph.js"
 
-function Photographs({photos, animals, locations, handleDelete}) {
+function Photographs({photos, animals, locations, handleDelete, editMode, setEditMode, confirmEdit}) {
   const [filterMode, setFilterMode] = useState('nofilter')
   const [filter, setFilter] = useState('nofilter')
-  
+
   const handleFilterTypeChange = (e) => {
     setFilterMode(e.target.value)
     setFilter('nofilter')
@@ -40,7 +40,19 @@ function Photographs({photos, animals, locations, handleDelete}) {
     
       <section className="container">
         {filteredPhotos.map((photo) => (
-          <Photograph key = {photo.id} id = {photo.id} animal = {photo.animal} image = {photo.image} handleDelete = {handleDelete} location = {photo.location} datetime = {photo.datetime}/>
+          <Photograph key = {photo.id} 
+                      id = {photo.id} 
+                      animal = {photo.animal} 
+                      image = {photo.image} 
+                      location = {photo.location} 
+                      datetime = {photo.datetime}
+                      handleDelete = {handleDelete} 
+                      editMode = {editMode}
+                      setEditMode = {setEditMode}
+                      confirmEdit = {confirmEdit}
+                      animals = {animals}
+                      locations = {locations}
+                      />
         ))}
       </section>
     </div>

@@ -105,6 +105,16 @@ class Photographs(Resource):
         return photograph.to_dict(), 201
 
 class PhotographById(Resource):
+    def patch(self, id):
+        photograph = Photograph.query.filter_by(id=id).first()
+        if photograph:
+            photograph.animal_id = request.json.get('animal_id')
+            photograph.location_id = request.json.get('location_id')
+            db.session.commit()
+            return photograph.to_dict(), 200
+        else:
+            return {'Error': 'Photograph not found'}, 404
+            
     def delete(self, id):
         photograph = Photograph.query.filter_by(id=id).first()
         if photograph:

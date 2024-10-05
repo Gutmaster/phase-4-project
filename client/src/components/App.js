@@ -16,12 +16,9 @@ function App() {
     fetch("/animals")
       .then((r) => r.json())
       .then(json => setAnimals(json));
-  }, [photos]);
-
-  useEffect(() => {
     fetch("/locations")
-     .then((r) => r.json())
-     .then(json => setLocations(json));
+      .then((r) => r.json())
+      .then(json => setLocations(json));
   }, [photos]);
 
   useEffect(() => {
@@ -42,6 +39,27 @@ function App() {
     });
   }
 
+  function handleEditPhoto(id, animal_id, location_id) {
+    fetch(`/photographs/${id}`, 
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({animal_id: animal_id, location_id: location_id})
+      }).then((r) => {
+      if(r.ok){
+        setPhotos((photos) =>
+          photos.map((photo) =>
+            photo.id === id? 
+              {...photo, animal_id, location_id, animal: animals.find(animal => animal.id === animal_id), location: locations.find(location => location.id === location_id)} 
+            : photo
+          )
+        )
+      }
+    })
+  }
+
   return (
     <>
       <Navbar />
@@ -56,7 +74,11 @@ function App() {
           <Locations locations={locations}/>
         </Route>
         <Route exact path="/photographs">
-          <Photographs photos={photos} animals={animals} locations={locations} handleDelete={handleDeletePhoto}/>
+          <Photographs photos={photos}
+                       animals={animals} 
+                       locations={locations} 
+                       handleDelete={handleDeletePhoto} 
+                       confirmEdit={handleEditPhoto}/>
         </Route>
         <Route exact path="/newphoto">
           <NewPhoto animals={animals} locations={locations} photos={photos} setPhotos={setPhotos}/>
