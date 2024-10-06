@@ -7,27 +7,37 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
     const [newAnimal, setNewAnimal] = useState('')
     const [newLocation, setNewLocation] = useState('')
 
-    function onSubmit(event) {
+    async function onSubmit(event) {
+        console.log('SUBMITTING')
         event.preventDefault();
         const formData = {
             animal_name: animal == 'newAnimal' ? newAnimal : animal,
             location_name: location == 'newLocation' ? newLocation : location,
             image: image
         }
-        console.log("POSTING PHOTOGRAPH", formData)
-        fetch('/photographs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+        try {
+            const response = await fetch('/photographs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             })
-            .then(response => response.json())
-            .then(data => {
-                setPhotos([...photos, data])
-                console.log(data)
-            })
-            .catch(error => console.error('Error:', error));
+            if (!response.ok) {
+                // This block will catch non-200-level HTTP responses
+                const errorData = await response.json()
+                console.error('Validation error:', errorData)
+                return
+            }
+            const data = await response.json()
+            setPhotos([...photos, data])
+            setAnimal('select')
+            setLocation('select')
+            setImage('')
+        } catch (error) {
+            // This block will catch network errors and other unexpected issues
+            console.error('Network Error or unexpected issue:', error)
+        }
     }
 
     return (
@@ -56,7 +66,7 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
             </div>
             <div className='right'>
                 {animal === 'newAnimal' ? <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)}/> : <input type="text" style = {{visibility: 'hidden'}}/>}
-                {location === 'newLocation' ? <input type="text" id = "newLocation" name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)}/> : <></>}
+                {location === 'newLocation' ? <input type="text" id = "newLocation" name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)}/> : <input type="text" style = {{visibility: 'hidden'}}/>}
             </div>  
             <button type="submit" className='submitButton'>Submit</button>
         </form>

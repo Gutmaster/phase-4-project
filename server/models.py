@@ -1,4 +1,5 @@
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db
@@ -19,6 +20,12 @@ class Animal(db.Model, SerializerMixin):
 
     serialize_rules = ('-photographs.animal',)
 
+    @validates('name')
+    def validate_name(self, key, value):
+        if not value:
+            raise ValueError('Name cannot be empty.')
+        return value
+
 
 class Photograph(db.Model, SerializerMixin):
     __tablename__ = 'photographs'
@@ -35,6 +42,12 @@ class Photograph(db.Model, SerializerMixin):
 
     serialize_rules = ('-animal.photographs', '-location.photographs')
 
+    @validates('image')
+    def validate_image(self, key, value):
+        if not value:
+            raise ValueError('Photograph must include a linked image.')
+        return value
+
 
 class Location(db.Model, SerializerMixin):
     __tablename__ = 'locations'
@@ -49,3 +62,9 @@ class Location(db.Model, SerializerMixin):
     animals = association_proxy('photographs', 'animal')
     
     serialize_rules = ('-photographs.location',)
+
+    @validates('name')
+    def validate_name(self, key, value):
+        if not value:
+            raise ValueError('Name cannot be empty.')
+        return value
