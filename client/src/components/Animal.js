@@ -35,12 +35,9 @@ function Animal({animal}) {
     }
     setEdit(!prevEdit)
 }
-
   return (
     <div className="photoCard">
-      <h4>
-        <p>{animal.name}</p>
-      </h4>
+      <h4>{animal.name}</h4>
       <span>
         <button onClick={handleArrowLeft}>&lt;</button>
         {animal.photographs.length ? <img src={animal.photographs[photoIndex].image} alt={animal.name}/> : <img src={noImage} alt='no_photo'/>}
@@ -48,6 +45,9 @@ function Animal({animal}) {
       </span>
       {edit ? <textarea className='edit' rows="5" cols="69" value={description} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
       <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
+      <ul>
+        {animal.locations.map(location => <li key = {location}>{location}</li>)}
+      </ul>
     </div>
   );
 }

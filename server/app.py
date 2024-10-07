@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 # Remote library imports
 from flask import Flask, render_template, request
 from flask_restful import Resource
+from flask import make_response
 
 # Local imports
 from config import app, db, api
@@ -27,7 +28,12 @@ def index():
 class Animals(Resource):
     def get(self):
         animals = Animal.query.all()
-        return [animal.to_dict() for animal in animals], 200
+        animal_dicts = []
+        for animal in animals:
+            animal_dict = animal.to_dict()
+            animal_dict['locations'] = [location.name for location in animal.locations]
+            animal_dicts.append(animal_dict)
+        return make_response(animal_dicts, 200)
 
 class AnimalById(Resource):
     def get(self, id):

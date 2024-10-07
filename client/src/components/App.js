@@ -20,6 +20,7 @@ function App() {
       .then((r) => r.json())
       .then(json => setLocations(json));
   }, [photos]);
+  console.log(animals)
 
   useEffect(() => {
     fetch("/photographs")
