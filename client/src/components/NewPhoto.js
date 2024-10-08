@@ -73,8 +73,8 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
                         <input type="text" id = "image" name="image" value={image} onChange={(e) => setImage(e.target.value)}/>
                 </div>
                 <div className='right'>
-                    {animal === 'newAnimal' ? <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)}/> : <input type="text" style = {{visibility: 'hidden'}}/>}
-                    {location === 'newLocation' ? <input type="text" id = "newLocation" name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)}/> : <input type="text" style = {{visibility: 'hidden'}}/>}
+                    {animal === 'newAnimal' ? <input type="text" id = "newAnimal" name="newAnimal" value={newAnimal} onChange={(e) => setNewAnimal(e.target.value)}/> : <input type="text" readOnly={true} value={''} style = {{visibility: 'hidden'}}/>}
+                    {location === 'newLocation' ? <input type="text" id = "newLocation" name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)}/> : <input type="text" readOnly={true} value={''} style = {{visibility: 'hidden'}}/>}
                 </div>  
                 <button type="submit" className='submitButton'>Submit</button>
             </form>

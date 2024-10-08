@@ -36,18 +36,20 @@ function Animal({animal}) {
     setEdit(!prevEdit)
 }
   return (
-    <div className="photoCard">
-      <h4>{animal.name}</h4>
-      <span>
+    <div className="animalCard">
+      <h1 className='cardTitle'>{animal.name}</h1>
+      <span className='container'>
         <button onClick={handleArrowLeft}>&lt;</button>
         {animal.photographs.length ? <img src={animal.photographs[photoIndex].image} alt={animal.name}/> : <img src={noImage} alt='no_photo'/>}
         <button onClick={handleArrowRight}>&gt;</button>
+        <ul>
+          <h4>Found in:</h4>
+          {animal.locations.map(location => <li key = {location}>{location}</li>)}
+        </ul>
       </span>
-      {edit ? <textarea className='edit' rows="5" cols="69" value={description} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
+      {edit ? <textarea className='edit' rows="5" cols="69" value={description?description:''} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
       <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
-      <ul>
-        {animal.locations.map(location => <li key = {location}>{location}</li>)}
-      </ul>
+
     </div>
   );
 }

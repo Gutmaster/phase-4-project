@@ -44,6 +44,7 @@ class AnimalById(Resource):
             return {'Error': 'Animal not found'}, 404 
     
     def patch(self, id):
+        print("PATCHING", id, request.json.get('description'))
         animal = Animal.query.filter_by(id=id).first()
         if animal:
             animal.name = request.json.get('name')
@@ -65,7 +66,12 @@ class AnimalById(Resource):
 class Locations(Resource):
     def get(self):
         locations = Location.query.all()
-        return [location.to_dict() for location in locations], 200
+        location_dicts = []
+        for location in locations:
+            location_dict = location.to_dict()
+            location_dict['animals'] = [animal.name for animal in location.animals]
+            location_dicts.append(location_dict)
+        return make_response(location_dicts, 200)
 
 class LocationById(Resource):
     def patch(self, id):

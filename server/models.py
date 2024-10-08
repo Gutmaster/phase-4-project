@@ -26,6 +26,13 @@ class Animal(db.Model, SerializerMixin):
             raise ValueError('Name cannot be empty.')
         return value
 
+    @validates('description')
+    def validate_description(self, key, value):
+        if type(value) != str:
+            raise ValueError('Description must be string.')
+        elif len(value) > 200:
+            raise ValueError('Description must be 200 characters or less.')
+        return value
 
 class Photograph(db.Model, SerializerMixin):
     __tablename__ = 'photographs'
@@ -67,4 +74,12 @@ class Location(db.Model, SerializerMixin):
     def validate_name(self, key, value):
         if not value:
             raise ValueError('Name cannot be empty.')
+        return value
+
+    @validates('description')
+    def validate_description(self, key, value):
+        if type(value) != str:
+            raise ValueError('Description must be string.')
+        elif len(value) > 200:
+            raise ValueError('Description must be 200 characters or less.')
         return value

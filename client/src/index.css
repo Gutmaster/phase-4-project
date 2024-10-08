@@ -31,7 +31,7 @@ header nav a {
 .photoCard {
   margin: 5px 0;
   padding: 5px;
-  max-width: 550px;
+  width: 550px;
   height: 550px;
   color: black;
   border: 1px solid grey;
@@ -49,6 +49,33 @@ header nav a {
 }
 
 .photoCard button {
+  display:inline-flex;
+  background-color: rgb(255, 0, 106);
+  color: white;
+  border-radius: 20px;
+}
+
+.animalCard {
+  margin: 5px 0;
+  padding: 5px;
+  width: 550px;
+  height: 550px;
+  color: black;
+  border: 1px solid grey;
+  border-radius: 12px;
+  background-color: rgb(22, 153, 44);
+}
+
+.animalCard img {
+  display: inline-flex;
+  /* margin-left: auto;
+  margin-right: auto; */
+  width: 300px;
+  height: 300px;
+  vertical-align: middle;
+}
+
+.animalCard button {
   display:inline-flex;
   background-color: rgb(255, 0, 106);
   color: white;
@@ -85,6 +112,10 @@ label {
   text-align: top;
 }
 
+ul {
+  margin:0px;
+}
+
 .submitButton {
   margin-left:45%;
 }
@@ -117,4 +148,16 @@ select { width: 200px;            height: 30px;      box-sizing:border-box; }
   background-color: green;
   color: white;
   text-align: center;
+}
+
+.cardTitle {
+  font-family:Impact, Haettenschweiler;
+  font-weight:bold;
+  margin-left:15px;
+}
+
+.listTitle {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight:bold;
+  font-size:large;
 }
