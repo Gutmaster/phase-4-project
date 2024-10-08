@@ -63,7 +63,7 @@ header nav a {
   color: black;
   border: 1px solid grey;
   border-radius: 12px;
-  background-color: rgb(22, 153, 44);
+  background-color: rgb(15, 119, 32);
 }
 
 .animalCard img {
@@ -73,6 +73,15 @@ header nav a {
   width: 300px;
   height: 300px;
   vertical-align: middle;
+}
+
+.animalCard p {
+  padding:10px;
+  border: solid 1px black;
+  background-color: rgb(33, 136, 52);
+  border-radius: 20px;
+  overflow-wrap:break-word;
+  hyphens:auto;
 }
 
 .animalCard button {

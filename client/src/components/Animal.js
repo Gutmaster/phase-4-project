@@ -17,6 +17,12 @@ function Animal({animal}) {
     setPhotoIndex((photoIndex - 1 + animal.photographs.length) % animal.photographs.length)
   }
 
+  function handleDescriptionChange(d){
+    if(d.length <= 200){
+      setDescription(d)
+    }
+  }
+
   function handleEdit() {
     prevEdit = edit
     if (prevEdit)
@@ -47,7 +53,7 @@ function Animal({animal}) {
           {animal.locations.map(location => <li key = {location}>{location}</li>)}
         </ul>
       </span>
-      {edit ? <textarea className='edit' rows="5" cols="69" value={description?description:''} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
+      {edit ? <textarea className='edit' rows="5" cols="69" value={description?description:''} onChange={(e) => handleDescriptionChange(e.target.value)}/> : <p className='edit'>{description}</p>}
       <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
 
     </div>
