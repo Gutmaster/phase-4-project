@@ -7,6 +7,11 @@ function Animal({animal}) {
   const [edit, setEdit] = useState(false)
   let prevEdit = edit
   const [description, setDescription] = useState(animal.description)
+  const [alertMessage, setAlertMessage] = useState('')
+
+  function alertReset(){
+      setAlertMessage('')
+  }
 
   function handleArrowRight(e) {
     e.preventDefault()
@@ -27,7 +32,6 @@ function Animal({animal}) {
     prevEdit = edit
     if (prevEdit)
     {
-        animal.description = description
         fetch(`/animals/${animal.id}`, {
             method: 'PATCH',
             headers: {
@@ -35,12 +39,24 @@ function Animal({animal}) {
             },
             body: JSON.stringify({name: animal.name, description: description})
         })
-        .then(response => response.json())
-        .then(data => console.log(data))
+        .then(response => {
+            if(response.ok)
+                return response.json()
+            else
+                setDescription(animal.description)
+                setAlertMessage('Invalid description. Description must be a string between 10 and 200 characters.')
+                setTimeout(alertReset, 2000)
+                throw('validation errors')
+        })
+        .then(data => {
+          animal.description = description
+            console.log(data)
+        })
         .catch(error => console.error('Error:', error))
     }
     setEdit(!prevEdit)
 }
+
   return (
     <div className="animalCard">
       <h1 className='cardTitle'>{animal.name}</h1>
@@ -53,9 +69,9 @@ function Animal({animal}) {
           {animal.locations.map(location => <li key = {location}>{location}</li>)}
         </ul>
       </span>
-      {edit ? <textarea className='edit' rows="5" cols="69" value={description?description:''} onChange={(e) => handleDescriptionChange(e.target.value)}/> : <p className='edit'>{description}</p>}
+      {edit ? <textarea className='edit' rows="5" cols="69" value={description?description:''} onChange={(e) => handleDescriptionChange(e.target.value)}/> : <p className='description'>{description}</p>}
       <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
-
+      {alertMessage!==''? <p className='badAlert'>{alertMessage}</p>: <></>}
     </div>
   );
 }

@@ -20,19 +20,17 @@ class Animal(db.Model, SerializerMixin):
 
     serialize_rules = ('-photographs.animal',)
 
-    @validates('name')
-    def validate_name(self, key, value):
+    @validates('name', 'description')
+    def validate_text(self, key, value):
         if not value:
-            raise ValueError('Name cannot be empty.')
+            raise ValueError(f'{key} cannot be empty.')
+        if type(value) != str:
+            raise ValueError(f'{key} must be a string.')
+        if key == 'description':
+            if not 10 <= len(value) <= 200:
+                raise ValueError('Description must be between 10 and 200 characters.')
         return value
 
-    @validates('description')
-    def validate_description(self, key, value):
-        if type(value) != str:
-            raise ValueError('Description must be string.')
-        elif len(value) > 200:
-            raise ValueError('Description must be 200 characters or less.')
-        return value
 
 class Photograph(db.Model, SerializerMixin):
     __tablename__ = 'photographs'
@@ -67,19 +65,16 @@ class Location(db.Model, SerializerMixin):
 
     # Adding association proxy to access animals directly from locations
     animals = association_proxy('photographs', 'animal')
-    
+
     serialize_rules = ('-photographs.location',)
 
-    @validates('name')
-    def validate_name(self, key, value):
+    @validates('name', 'description')
+    def validate_text(self, key, value):
         if not value:
-            raise ValueError('Name cannot be empty.')
-        return value
-
-    @validates('description')
-    def validate_description(self, key, value):
+            raise ValueError(f'{key} cannot be empty.')
         if type(value) != str:
-            raise ValueError('Description must be string.')
-        elif len(value) > 200:
-            raise ValueError('Description must be 200 characters or less.')
+            raise ValueError(f'{key} must be a string.')
+        if key == 'description':
+            if not 10 <= len(value) <= 200:
+                raise ValueError('Description must be between 10 and 200 characters.')
         return value

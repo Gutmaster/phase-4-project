@@ -31,7 +31,7 @@ class Animals(Resource):
         animal_dicts = []
         for animal in animals:
             animal_dict = animal.to_dict()
-            animal_dict['locations'] = [location.name for location in animal.locations]
+            animal_dict['locations'] = list(set([location.name for location in animal.locations]))
             animal_dicts.append(animal_dict)
         return make_response(animal_dicts, 200)
 
@@ -47,10 +47,15 @@ class AnimalById(Resource):
         print("PATCHING", id, request.json.get('description'))
         animal = Animal.query.filter_by(id=id).first()
         if animal:
-            animal.name = request.json.get('name')
-            animal.description = request.json.get('description')
-            db.session.commit()
-            return animal.to_dict(), 200
+            try:
+                animal.name = request.json.get('name')
+                animal.description = request.json.get('description')
+            except ValueError as error:
+                print(error)
+                return {'error editing animal': [error.args[0]]}, 400
+            else:
+                db.session.commit()
+                return animal.to_dict(), 200
         else:
             return {'Error': 'Animal not found'}, 404
         
@@ -69,7 +74,7 @@ class Locations(Resource):
         location_dicts = []
         for location in locations:
             location_dict = location.to_dict()
-            location_dict['animals'] = [animal.name for animal in location.animals]
+            location_dict['animals'] = list(set([animal.name for animal in location.animals]))
             location_dicts.append(location_dict)
         return make_response(location_dicts, 200)
 
@@ -99,16 +104,17 @@ class Photographs(Resource):
         if not animal:
             try:
                 animal = Animal(name = data.get('animal_name'))
-            except ValueError:
-                return {'error creating new animal': ['validation errors']}, 400
+            except ValueError as error:
+                print(error)
+                return {'error creating new animal': [error.args[0]]}, 400
             db.session.add(animal)
         
         location = Location.query.filter_by(name=data.get('location_name')).first()
         if not location:
             try:
                 location = Location(name = data.get('location_name'))
-            except ValueError:
-                return {'error creating new location': ['validation errors']}, 400
+            except ValueError as error:
+                return {'error creating new location': [error.args[0]]}, 400
             db.session.add(location)
 
         photograph = Photograph(datetime = dt_formatted, animal = animal, location = location, image = data.get('image'))

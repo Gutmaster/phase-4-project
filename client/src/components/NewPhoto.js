@@ -78,7 +78,7 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
                 </div>  
                 <button type="submit" className='submitButton'>Submit</button>
             </form>
-            {alertMessage!==''? <p className='alert'>{alertMessage}</p>: <></>}
+            {alertMessage!==''? <p className='goodAlert'>{alertMessage}</p>: <></>}
         </div>
     );
 }

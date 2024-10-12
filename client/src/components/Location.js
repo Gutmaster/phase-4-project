@@ -21,7 +21,6 @@ function Location({location}) {
         prevEdit = edit
         if (prevEdit)
         {
-            location.description = description
             fetch(`/locations/${location.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -29,8 +28,17 @@ function Location({location}) {
                 },
                 body: JSON.stringify({name: location.name, description: description})
             })
-            .then(response => response.json())
-            .then(data => console.log(data))
+            .then(response => {
+                if(response.ok)
+                    return response.json()
+                else
+                    setDescription(location.description)
+                    throw('validation errors')
+            })
+            .then(data => {
+                location.description = description
+                console.log(data)
+            })
             .catch(error => console.error('Error:', error))
         }
         setEdit(!prevEdit)
@@ -48,7 +56,7 @@ function Location({location}) {
                     {location.animals.map(animal => <li key = {animal}>{animal}</li>)}
                 </ul>
             </span>
-            {edit ? <textarea className='edit' rows="5" cols="69" value={description} onChange={(e) => setDescription(e.target.value)}/> : <p className='edit'>{description}</p>}
+            {edit ? <textarea className='edit' rows="5" cols="69" value={description} onChange={(e) => setDescription(e.target.value)}/> : <p className='description'>{description}</p>}
             <button onClick={() => handleEdit()}>{edit ? 'Save': 'Edit'}</button>
         </div>
     );
