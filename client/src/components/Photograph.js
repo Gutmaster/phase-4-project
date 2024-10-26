@@ -12,13 +12,13 @@ function Photograph({id, animal, location, datetime, image, handleDelete, confir
   }
 
   function handleEditAnimal(newId){
-    const foundAnimal = animals.find(animal => animal.id == newId)
+    const foundAnimal = animals.find(animal => animal.id === newId)
     if (foundAnimal)
       setNewAnimal(foundAnimal)
   }
 
   function handleEditLocation(newId){
-    const foundLocation = locations.find(location => location.id == newId)
+    const foundLocation = locations.find(location => location.id === newId)
     if (foundLocation)
       setNewLocation(foundLocation)
   }

@@ -46,7 +46,7 @@ function Animal({animal}) {
                 setDescription(animal.description)
                 setAlertMessage('Invalid description. Description must be a string between 10 and 200 characters.')
                 setTimeout(alertReset, 2000)
-                throw('validation errors')
+                throw(Error('validation errors'))
         })
         .then(data => {
           animal.description = description
