@@ -96,12 +96,15 @@ header nav a {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%); */
-  margin-left:45%;
-  align-self:center;
+  margin-left:43%;
+  text-align:center;
+  /* align-self:center;
   align-content: center;
-  align-items: center;
-  width:75px;
-  max-width:100px;
+  align-items: center; */
+  width:fit-content;
+  /* width:75px;
+  max-width:100px; */
+  background-color:magenta;
   border: 20px solid blueviolet;
 }
 

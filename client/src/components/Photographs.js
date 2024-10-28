@@ -20,6 +20,7 @@ function Photographs({photos, animals, locations, handleDelete, editMode, setEdi
   return (
     <div>
       <div className="filter">
+        <h4>Photo Filter</h4>
         <select id = "filterMode" value={filterMode} onChange={(e) => handleFilterTypeChange(e)}>
           <option value="nofilter">None</option>
           <option value="animal">Animal</option>
@@ -27,8 +28,8 @@ function Photographs({photos, animals, locations, handleDelete, editMode, setEdi
         </select>
         {filterMode === 'nofilter' ? (<></>) : (
           <div>
-            <select id = "filter" value={filter} onChange={(e) => handleFilterChange(e)}>
-              <option value="nofilter">None</option>
+            <select id="filter" value={filter} onChange={(e) => handleFilterChange(e)}>
+              <option value="nofilter">Please select {filterMode === 'animal'? 'an animal.': 'a location.'}</option>
               {filterMode === 'animal' ? animals.map(animal => (
                 <option key={animal.id} value={animal.name}>{animal.name}</option>
               )) : locations.map((location) => (
