@@ -5,6 +5,23 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+.home {
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp6936159.jpg&f=1&nofb=1&ipt=1c8cd9365d145e63c1d06f3ec60ced33edd086a178823cb33c7bd799d9292a59&ipo=images");
+  padding: 8px;
+  text-align: center;
+  height: 1000px;
+}
+
+.homeText {
+  background-color: rgb(48, 168, 138);
+  padding: 8px;
+  margin: auto;
+  width: 50%;
+  text-indent: 12px;
+  text-align: left;
+  border-radius: 12px;
+}
+
 header {
   padding: 8px;
   background-color: rgb(150, 76, 34);
