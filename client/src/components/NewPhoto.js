@@ -64,7 +64,7 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
     })
 
     return (
-        <div>
+        <div className='newPhoto'>
             <form className='newPhotoForm' onSubmit={formik.handleSubmit}>
                 <div className='left'>
                     <label htmlFor='animal'>Animal: </label>

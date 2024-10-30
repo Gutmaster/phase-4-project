@@ -12,13 +12,13 @@ function Photograph({id, animal, location, datetime, image, handleDelete, confir
   }
 
   function handleEditAnimal(newId){
-    const foundAnimal = animals.find(animal => animal.id === newId)
+    const foundAnimal = animals.find(a => a.id === parseInt(newId))
     if (foundAnimal)
       setNewAnimal(foundAnimal)
   }
 
   function handleEditLocation(newId){
-    const foundLocation = locations.find(location => location.id === newId)
+    const foundLocation = locations.find(l => l.id === parseInt(newId))
     if (foundLocation)
       setNewLocation(foundLocation)
   }
@@ -31,7 +31,6 @@ function Photograph({id, animal, location, datetime, image, handleDelete, confir
                         {animals.map((animal) => (
                             <option key={animal.id} value={animal.id}>{animal.name}</option>
                         ))}
-                        <option value={'newAnimal'}>New Animal</option>
                     </select></label>
       : <h4>Species: {newAnimal.name}</h4>}
 
@@ -44,12 +43,11 @@ function Photograph({id, animal, location, datetime, image, handleDelete, confir
                         {locations.map((location) => (
                             <option key={location.id} value={location.id}>{location.name}</option>
                         ))}
-                        <option value={'newLocation'}>New Location</option>
                     </select></label>
       : <h4>Location: {newLocation.name}</h4>}
 
       <h5>Date: {datetime}</h5>
-      <span><button onClick={() => handleDelete(id)}>Delete</button> <button onClick={() => handleEdit()}>Edit</button></span>
+      <span><button onClick={() => handleDelete(id)}>Delete</button> <button onClick={() => handleEdit()}>{editMode? 'Save':'Edit'}</button></span>
     </div>
   );
 }

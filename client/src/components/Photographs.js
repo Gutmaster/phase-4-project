@@ -18,7 +18,7 @@ function Photographs({photos, animals, locations, handleDelete, editMode, setEdi
   )
 
   return (
-    <div>
+    <div className='photographs'>
       <div className="filter">
         <h4>Photo Filter</h4>
         <select id = "filterMode" value={filterMode} onChange={(e) => handleFilterTypeChange(e)}>
