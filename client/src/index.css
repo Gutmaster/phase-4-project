@@ -69,7 +69,8 @@ header nav a {
 }
 
 .container {
-  margin: 0 auto;
+  padding: 10px;
+  margin: 5 auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -86,12 +87,14 @@ header nav a {
   border: 1px solid grey;
   border-radius: 12px;
   background-color: rgb(22, 153, 44);
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FAlDivIaiuMU%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=35cfae5a4211eb3d2ed27161f5e830941e9baf1fbb1d015d9c029f4b1d82dcf6&ipo=images')
 }
 
 .photoCard img {
   display: inline-flex;
   margin-left: auto;
   margin-right: auto;
+  margin-top:20px;
   width: 500px;
   height: 370px;
   vertical-align: middle;
@@ -113,15 +116,57 @@ header nav a {
   border: 1px solid grey;
   border-radius: 12px;
   background-color: rgb(15, 119, 32);
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2Fe%2Fd%2Fc%2F269263.jpg&f=1&nofb=1&ipt=4230a72ce2dfa22448160489a7d36f840fd7487a14f07d4a096a6fc12c8e636b&ipo=images");
+  background-size: 180%;
 }
 
 .animalCard img {
   display: inline-flex;
-  /* margin-left: auto;
-  margin-right: auto; */
   width: 300px;
   height: 300px;
   vertical-align: middle;
+}
+
+.locationCard {
+  margin: 5px 0;
+  padding: 5px;
+  width: 550px;
+  height: 550px;
+  color: black;
+  border: 1px solid grey;
+  border-radius: 12px;
+  background-color: rgb(15, 43, 119);
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F024%2F581%2F458%2Flarge_2x%2Fold-crumpled-paper-background-brown-crumpled-paper-texture-abstract-old-brown-paper-as-vintage-wallpaper-backdrop-ai-generated-free-photo.jpg&f=1&nofb=1&ipt=f3288c666a2e7df125a80f724aac47c4c2b78ac8e6e6e3fb377e1dd642bb591f&ipo=images");
+  background-size: 150%;
+}
+
+.locationCard img {
+  display: inline-flex;
+  width: 300px;
+  height: 300px;
+  vertical-align: middle;
+}
+.cardText {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: solid 1px black;
+  background-color: rgb(33, 136, 52);
+  border-radius: 20px;
+  overflow-wrap:break-word;
+  hyphens:auto;
+  width:fit-content;
+  padding: 10px;
+}
+
+.listText {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border: solid 1px black;
+  background-color: rgb(33, 136, 52);
+  overflow-wrap:break-word;
+  hyphens:auto;
+  width:fit-content;
+  padding-left:25px;
+  padding-right:10px;
+  padding-bottom:5px;
 }
 
 .description {
@@ -141,18 +186,9 @@ header nav a {
 }
 
 .filter{
-  /* margin: 0;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   margin-left:43%;
   text-align:center;
-  /* align-self:center;
-  align-content: center;
-  align-items: center; */
   width:fit-content;
-  /* width:75px;
-  max-width:100px; */
   background-color:magenta;
   border: 20px solid blueviolet;
 }
@@ -234,6 +270,11 @@ select { width: 200px;            height: 30px;      box-sizing:border-box; }
   font-family:Impact, Haettenschweiler;
   font-weight:bold;
   margin-left:15px;
+  padding: 5px;
+  background-color:rgb(15, 119, 32);
+  border-style: solid;
+  border-color: black;
+  width:fit-content;
 }
 
 .listTitle {

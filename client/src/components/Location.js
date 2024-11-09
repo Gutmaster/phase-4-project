@@ -45,13 +45,13 @@ function Location({location}) {
     }
 
     return (
-        <div className="animalCard">
+        <div className="locationCard">
             <h1 className='cardTitle'>{location.name}</h1>
             <span className='container'>
                 <button onClick={handleArrowLeft}>&lt;</button>
                 {location.photographs.length ? <img src={location.photographs[photoIndex].image} alt={location.name}/> : <img src={noImage} alt='no_photo'/>}
                 <button onClick={handleArrowRight}>&gt;</button>
-                <ul>
+                <ul className='listText'>
                     <h4>Residents:</h4>
                     {location.animals.map(animal => <li key = {animal}>{animal}</li>)}
                 </ul>

@@ -25,29 +25,32 @@ function Photograph({id, animal, location, datetime, image, handleDelete, confir
 
   return (
     <div className="photoCard">
-      {editMode ? <label htmlFor='animal'>Animal:
-                    <select id="animal" name="animal" value={newAnimal.id} onChange={(e) => handleEditAnimal(e.target.value)}>
-                        <option value={'select'}>Select Animal</option>
-                        {animals.map((animal) => (
-                            <option key={animal.id} value={animal.id}>{animal.name}</option>
-                        ))}
-                    </select></label>
-      : <h4>Species: {newAnimal.name}</h4>}
+      <div className='container'>
+        <img src={image} alt={animal.name}/>
+      </div>
 
+      <span className='container'>
+        {editMode ? <label htmlFor='animal'>Animal:
+                      <select id="animal" name="animal" value={newAnimal.id} onChange={(e) => handleEditAnimal(e.target.value)}>
+                          <option value={'select'}>Select Animal</option>
+                          {animals.map((animal) => (
+                              <option key={animal.id} value={animal.id}>{animal.name}</option>
+                          ))}
+                      </select></label>
+        : <h4 className='cardText'>Species: {newAnimal.name}</h4>}
 
-      <img src={image} alt={animal.name}/>
-
-      {editMode ? <label htmlFor='location'>Location:
-                    <select id="location" name="location" value={newLocation.id} onChange={(e) => handleEditLocation(e.target.value)}>
-                        <option value={'select'}>Select Location</option>
-                        {locations.map((location) => (
-                            <option key={location.id} value={location.id}>{location.name}</option>
-                        ))}
-                    </select></label>
-      : <h4>Location: {newLocation.name}</h4>}
-
-      <h5>Date: {datetime}</h5>
-      <span><button onClick={() => handleDelete(id)}>Delete</button> <button onClick={() => handleEdit()}>{editMode? 'Save':'Edit'}</button></span>
+          {editMode ? <label htmlFor='location'>Location:
+                        <select id="location" name="location" value={newLocation.id} onChange={(e) => handleEditLocation(e.target.value)}>
+                            <option value={'select'}>Select Location</option>
+                            {locations.map((location) => (
+                                <option key={location.id} value={location.id}>{location.name}</option>
+                            ))}
+                        </select></label>
+          : <h4 className='cardText'>Location: {newLocation.name}</h4>}
+        
+          <h5 className='cardText'>Date: {datetime}</h5>
+        </span>
+        <span className='container'><button onClick={() => handleDelete(id)}>Delete</button> <button onClick={() => handleEdit()}>{editMode? 'Save':'Edit'}</button></span>
     </div>
   );
 }
