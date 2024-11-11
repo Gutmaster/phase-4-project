@@ -4,7 +4,7 @@ function Home() {
     return (
       <div className='home'>
         <div className='homeText'>
-          <h1>Welcome to the animal documenter!</h1>
+          <h1 className='title'>Welcome to the animal documenter!</h1>
           <p>
             This is a website dedicated to showing off cool critters people have photographed across the planet. 
             Our collection is made entirely of donated links to photographs taken of an given animal at a given place.

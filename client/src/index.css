@@ -20,6 +20,7 @@
   text-indent: 12px;
   text-align: left;
   border-radius: 12px;
+  font-size:30px;
 }
 
 .animals {
@@ -52,6 +53,11 @@
   background-attachment: fixed;
   min-height: 100vh;
   height: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size:larger;
 }
 
 header {
