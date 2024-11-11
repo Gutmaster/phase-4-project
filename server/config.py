@@ -9,8 +9,6 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
-# Local imports
-
 # Instantiate app, set attributes
 app = Flask(
     __name__,
@@ -22,9 +20,11 @@ app = Flask(
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
+
 # Toggle for deployment mode
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 app.json.compact = False
 
 # Define metadata, instantiate db
