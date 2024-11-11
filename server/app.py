@@ -35,14 +35,7 @@ class Animals(Resource):
             animal_dicts.append(animal_dict)
         return make_response(animal_dicts, 200)
 
-class AnimalById(Resource):
-    def get(self, id):
-        animal = Animal.query.filter_by(id=id).first()
-        if animal:
-            return animal.to_dict(), 200
-        else:
-            return {'Error': 'Animal not found'}, 404 
-    
+class AnimalById(Resource):    
     def patch(self, id):
         print("PATCHING", id, request.json.get('description'))
         animal = Animal.query.filter_by(id=id).first()
@@ -56,15 +49,6 @@ class AnimalById(Resource):
             else:
                 db.session.commit()
                 return animal.to_dict(), 200
-        else:
-            return {'Error': 'Animal not found'}, 404
-        
-    def delete(self, id):
-        animal = Animal.query.filter_by(id=id).first()
-        if animal:
-            db.session.delete(animal)
-            db.session.commit()
-            return {'Message': 'Animal deleted'}, 200
         else:
             return {'Error': 'Animal not found'}, 404
         

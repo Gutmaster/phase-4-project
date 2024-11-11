@@ -185,6 +185,13 @@ header nav a {
   border-radius: 20px;
 }
 
+.locationCard button {
+  display:inline-flex;
+  background-color: rgb(255, 0, 106);
+  color: white;
+  border-radius: 20px;
+}
+
 .filter{
   margin-left:43%;
   text-align:center;
