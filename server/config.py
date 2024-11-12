@@ -23,8 +23,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
 
 # Toggle for deployment mode
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
 # Define metadata, instantiate db
