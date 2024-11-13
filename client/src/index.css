@@ -75,8 +75,7 @@ header nav a {
 }
 
 .container {
-  padding: 10px;
-  margin: 5 auto;
+  padding: 1px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -85,13 +84,13 @@ header nav a {
 }
 
 .photoCard {
-  margin: 5px 0;
   padding: 5px;
   width: 550px;
   height: 550px;
   color: black;
   border: 1px solid grey;
   border-radius: 12px;
+  height:fit-content;
   background-color: rgb(22, 153, 44);
   background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FAlDivIaiuMU%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=35cfae5a4211eb3d2ed27161f5e830941e9baf1fbb1d015d9c029f4b1d82dcf6&ipo=images')
 }
@@ -152,6 +151,7 @@ header nav a {
   height: 300px;
   vertical-align: middle;
 }
+
 .cardText {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: solid 1px black;
@@ -160,7 +160,7 @@ header nav a {
   overflow-wrap:break-word;
   hyphens:auto;
   width:fit-content;
-  padding: 10px;
+  padding: 5px;
 }
 
 .listText {
