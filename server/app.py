@@ -126,12 +126,12 @@ class PhotographById(Resource):
         else:
             return {'Error': 'Photograph not found'}, 404
 
-api.add_resource(Animals, '/animals')
-api.add_resource(AnimalById, '/animals/<int:id>')
-api.add_resource(Locations, '/locations')
-api.add_resource(LocationById, '/locations/<int:id>')
-api.add_resource(Photographs, '/photographs')
-api.add_resource(PhotographById, '/photographs/<int:id>')
+api.add_resource(Animals, '/_animals')
+api.add_resource(AnimalById, '/_animals/<int:id>')
+api.add_resource(Locations, '/_locations')
+api.add_resource(LocationById, '/_locations/<int:id>')
+api.add_resource(Photographs, '/_photographs')
+api.add_resource(PhotographById, '/_photographs/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -13,22 +13,22 @@ function App() {
   const [photos, setPhotos] = useState([])
 
   useEffect(() => {
-    fetch("/animals")
+    fetch("/_animals")
       .then((r) => r.json())
       .then(json => setAnimals(json));
-    fetch("/locations")
+    fetch("/_locations")
       .then((r) => r.json())
       .then(json => setLocations(json));
   }, [photos]);
 
   useEffect(() => {
-    fetch("/photographs")
+    fetch("/_photographs")
       .then((r) => r.json())
       .then(setPhotos);
   }, []);
 
   function handleDeletePhoto(id) {
-    fetch(`/photographs/${id}`, {
+    fetch(`/_photographs/${id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
@@ -40,7 +40,7 @@ function App() {
   }
 
   function handleEditPhoto(id, animal_id, location_id) {
-    fetch(`/photographs/${id}`, 
+    fetch(`/_photographs/${id}`, 
       {
         method: "PATCH",
         headers: {

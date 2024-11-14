@@ -32,7 +32,7 @@ function Animal({animal}) {
     prevEdit = edit
     if (prevEdit)
     {
-        fetch(`/animals/${animal.id}`, {
+        fetch(`/_animals/${animal.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

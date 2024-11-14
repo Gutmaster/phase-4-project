@@ -21,7 +21,7 @@ function Location({location}) {
         prevEdit = edit
         if (prevEdit)
         {
-            fetch(`/locations/${location.id}`, {
+            fetch(`/_locations/${location.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

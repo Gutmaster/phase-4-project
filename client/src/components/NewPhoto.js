@@ -30,7 +30,7 @@ function NewPhoto({animals, locations, photos, setPhotos}) {
         validationSchema: formSchema,
         onSubmit: async (values) => {
             try {
-                const response = await fetch('/photographs', {
+                const response = await fetch('/_photographs', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
