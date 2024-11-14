@@ -21,9 +21,9 @@ load_dotenv()
 def not_found(e):
     return render_template("index.html")
 
-@app.route('/')
-def index():
-    return '<h1>Project Server</h1>'
+# @app.route('/')
+# def index():
+#     return '<h1>Project Server</h1>'
 
 class Animals(Resource):
     def get(self):
